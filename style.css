@@ -1,0 +1,30 @@
+.outerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightblue;
+    height: 800px;
+    padding: 60px;
+    gap: 30px;
+}
+
+.displayContainer {
+    background-color: white;
+    padding: 15px;
+    height: 400px;
+    width: 300px;
+}
+
+.inputContainer {
+    background-color: aquamarine;
+    width: 300px;
+    padding: 15px;
+}
+
+.buttonsContainer {
+    display: flex;
+    background-color: bisque;
+    width: 300px;
+    padding: 15px;
+    justify-content: space-evenly;
+}
