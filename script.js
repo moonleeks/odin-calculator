@@ -25,14 +25,9 @@ function operate(a, b, operator) {
 }
 
 function updateDisplay(content) {
-    /* console.log("updating display");
-    if (result === '') {
-        display.textContent = a + " " + operator + " " + b;
-    } else {
-        display.textContent = a + " " + operator + " " + b + " = " + result;
-    } */
-    display.textContent = content + " |a=" + a + " | b=" + b + 
-        "| otor=" + operator + " |orand=" + operand + "|res=" + result;
+    display.textContent = content;
+/*     display.textContent = content + " |a=" + a + " | b=" + b + 
+        "| otor=" + operator + " |orand=" + operand + "|res=" + result; */
 }
 
 function clear() {
@@ -55,9 +50,16 @@ let operand = 'a';
 let lastKey = '';
 const display = document.querySelector('.display');
 
+
+// if a digit is pressed after a calculate press we should clear
+// everything and start fresh. But if an operator is pressed after
+// calculate then we use the result
 const buttonsContainer = document.querySelector('.buttonsContainer');
 buttonsContainer.addEventListener('click', (e) => {
     if (e.target.parentNode.classList.contains('digitContainer')) {
+        if (lastKey === 'calculate') { //when calculate press if followd by digit press
+            clear();
+        }
         if (operand === 'a') {
             a += e.target.dataset.symbol;
             updateDisplay(a);
@@ -71,46 +73,26 @@ buttonsContainer.addEventListener('click', (e) => {
             operate(parseInt(a), parseInt(b), operator);
             a = result;
             b = '';
-            operand = 'b';
             updateDisplay(result);
-            switch (e.target.id) {
-                case 'add': 
-                    operator = '+'; 
-                    break;
-                case 'substract': 
-                    operator = '-';
-                    break;
-                case 'multiply': 
-                    operator = '*';
-                    break;
-                case 'divide': 
-                    operator = '/';
-                    break;
-            } 
-        } else {
-            switch (e.target.id) {
-                case 'add': 
-                    operator = '+'; 
-                    break;
-                case 'substract': 
-                    operator = '-';
-                    break;
-                case 'multiply': 
-                    operator = '*';
-                    break;
-                case 'divide': 
-                    operator = '/';
-                    break;
             }
-            operand = 'b';
+        switch (e.target.id) {
+            case 'add': 
+                operator = '+'; 
+                break;
+            case 'substract': 
+                operator = '-';
+                break;
+            case 'multiply': 
+                operator = '*';
+                break;
+            case 'divide': 
+                operator = '/';
+                break;    
         }
+        operand = 'b';
         lastKey = 'operator';
     } else {
         switch (e.target.id) {
-            // what if a digit is pressed after a calculate press?
-            // we should clear everything and start fresh
-            // but if an operator is pressed after calculate then we use the result
-            // maybe store lastPressedKey in a variable (digit, operator, calc, clear)
             case 'calculate': 
                 operate(parseInt(a), parseInt(b), operator);
                 updateDisplay(result);
