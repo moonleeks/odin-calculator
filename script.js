@@ -50,13 +50,21 @@ let operand = 'a';
 let lastKey = '';
 const display = document.querySelector('.display');
 
+// TODO 
+// handle input of negative numbers
+
+// a different way: store last keypresses in an array and after each press 
+// update the display. 
+// How long should the array be? Number of operator presses can determine that. 
+
+
 
 // if a digit is pressed after a calculate press we should clear
 // everything and start fresh. But if an operator is pressed after
 // calculate then we use the result
 const buttonsContainer = document.querySelector('.buttonsContainer');
 buttonsContainer.addEventListener('click', (e) => {
-    if (e.target.parentNode.classList.contains('digitContainer')) {
+    if (e.target.classList.contains('digit')) {
         if (lastKey === 'calculate') { //when calculate press if followd by digit press
             clear();
         }

@@ -1,3 +1,7 @@
+button {
+    width: 100px;
+    height: 100px;
+}
 .outerContainer {
     display: flex;
     flex-direction: column;
@@ -23,8 +27,17 @@
 
 .buttonsContainer {
     display: flex;
+    
+    flex-wrap: wrap-reverse;
     background-color: bisque;
-    width: 300px;
+    width: 350px;
     padding: 15px;
-    justify-content: space-evenly;
+}
+
+.digitContainer {
+    width: 200px;
+}
+
+#zero {
+    width: 300px;
 }
